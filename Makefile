@@ -6,7 +6,7 @@
 #    By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 21:06:07 by tschmitt          #+#    #+#              #
-#    Updated: 2021/08/25 21:45:24 by tschmitt         ###   ########.fr        #
+#    Updated: 2021/08/26 17:46:25 by tschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,6 @@ clean:
 fclean: clean
 	@echo $(R)Cleaning" "[$(NAME)]...$(X)
 	@make -C ./libs/libft/ fclean
-	@make -C ./libs/mlx/ fclean
 	@rm -f $(NAME)
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:21:00 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/08/25 19:37:06 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/08/26 23:48:45 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,64 @@ typedef struct s_mlx
 	void	*win;
 }	t_mlx;
 
-enum e_img {
-	ground,
-	key,
-	link_left,
-	link_right,
-	link_up,
-	link1,
-	tent,
-	tree
+enum e_corners {
+	bottom_left = 0,
+	bottom_right = 1,
+	bottom = 2,
+	left = 3,
+	right = 4,
+	top_right = 5,
+	top = 6,
+	up_left = 7
+};
+
+enum e_floor {
+	brick_mid = 8,
+	brick_straight = 9,
+	grass_empty = 10,
+	grass_flower = 11,
+	grass_half = 12,
+	grass_quater = 13,
+	stone_mid = 14,
+	stone_straight = 15,
+};
+
+enum e_sprites {
+	castle = 16,
+	chest = 17,
+	door_iron = 18,
+	door_passage = 19,
+	door_wood = 20,
+	fire_0 = 21,
+	fire_1 = 22,
+	grass = 23,
+	map = 24,
+	pot = 25,
+	rocks = 26,
+	stairs_down = 27,
+	stairs_up = 28,
+	statue = 29,
+	throne = 30,
+	tree_0 = 31,
+	tree_1 = 32,
+	tree_2 = 33,
+	trees_0 = 34,
+	village = 35,
+	well = 36,
+};
+
+enum e_wall {
+	brick_down = 37,
+	brick_up = 38,
+	mossy_stone_wall = 39,
+	stone_down = 40,
+	stone_up = 41,
 };
 
 typedef struct s_image
 {
 	void	*image;
+	char	*path;
 	int		width;
 	int		height;
 }	t_image;
@@ -57,12 +101,13 @@ typedef struct s_image
 typedef struct s_data
 {
 	t_mlx	mlx;
-	t_image	image[8];
+	t_image	images[42];
 	t_map	map;
 	int		win_width;
 	int		win_height;
 }	t_data;
 
 void	parse_map(t_map *map);
+void	init_texture_paths(t_data *data);
 
 #endif

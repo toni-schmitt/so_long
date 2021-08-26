@@ -6,7 +6,7 @@
 #    By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 21:06:07 by tschmitt          #+#    #+#              #
-#    Updated: 2021/08/26 17:46:25 by tschmitt         ###   ########.fr        #
+#    Updated: 2021/08/26 23:49:34 by tschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_INCLUDE = ./libs/libft/include/
 
 LIBFT_NAME = ./libs/libft/lib/libft.a
 
-SRC = ./src/main.c ./src/draw_map.c ./src/parse_map.c
+SRC = ./src/main.c ./src/draw_map.c ./src/parse_map.c ./src/init.c
 
 MLX_FLAGS = -I ./libs/mlx/ -L ./libs/mlx -lmlx -framework OpenGL -framework AppKit
 

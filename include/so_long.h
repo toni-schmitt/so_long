@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:21:00 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/08/26 23:48:45 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/08/27 16:47:07 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # ifndef WIN_HEIGHT
 #  define WIN_HEIGHT 1000
 # endif
+
+# define NO_OF_TEXTURES 42
+# define TEXTURE_WIDTH 16
+# define TEXTURE_HEIGHT 16
 
 typedef struct s_map
 {
@@ -42,9 +46,9 @@ enum e_corners {
 	bottom = 2,
 	left = 3,
 	right = 4,
-	top_right = 5,
-	top = 6,
-	up_left = 7
+	top_left = 5,
+	top_right = 6,
+	top = 7,
 };
 
 enum e_floor {
@@ -94,6 +98,7 @@ typedef struct s_image
 {
 	void	*image;
 	char	*path;
+	int		is_valid;
 	int		width;
 	int		height;
 }	t_image;
@@ -109,5 +114,6 @@ typedef struct s_data
 
 void	parse_map(t_map *map);
 void	init_texture_paths(t_data *data);
+void	draw_map(t_data *data);
 
 #endif

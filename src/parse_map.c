@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 17:16:40 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/08/25 21:35:09 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/08/27 17:46:25 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ void	parse_map(t_map *map)
 	int		line_count;
 	char	*line;
 	int		fd;
+	int		i;
 
+	i = 0;
 	line_count = ft_get_line_count(map->path);
 	map->data = malloc(line_count + 1 * sizeof(*map->data));
 	if (map->data == NULL)
@@ -54,13 +56,14 @@ void	parse_map(t_map *map)
 	line = get_next_line(fd);
 	while (line)
 	{
-		*map->data = ft_strndup(line, ft_strlen(line) - 1);
-		map->data++;
+		map->data[i] = ft_strndup(line, ft_strlen(line) - 1);
+		if (map->data[i] == NULL)
+			ft_puterror("Error allocating line of map data");
+		i++;
 		free(line);
 		line = get_next_line(fd);
 	}
-	*map->data = NULL;
-	map->data -= line_count;
+	map->data[i] = NULL;
 	if (!is_valid(map->data, line_count))
 		ft_puterror("Map is not valid");
 }

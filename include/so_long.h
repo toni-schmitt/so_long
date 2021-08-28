@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:21:00 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/08/27 21:18:03 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/08/28 16:43:43 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,22 @@ enum e_wall {
 	stone_up = 41,
 };
 
+typedef struct s_vector
+{
+	int	x;
+	int	y;
+}	t_vector;
+
 typedef struct s_image
 {
-	void	*image;
-	char	*path;
-	int		is_valid;
-	int		width;
-	int		height;
+	void		*image;
+	t_vector	size;
+	char		*pixels;
+	int			bpp;
+	int			line_size;
+	int			endian;
+	char		*path;
+	int			is_valid;
 }	t_image;
 
 typedef struct s_data

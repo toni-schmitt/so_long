@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:21:00 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/08/27 16:47:07 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/08/27 21:18:03 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_image
 typedef struct s_data
 {
 	t_mlx	mlx;
-	t_image	images[42];
+	t_image	images[NO_OF_TEXTURES];
 	t_map	map;
 	int		win_width;
 	int		win_height;

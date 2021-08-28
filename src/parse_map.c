@@ -6,33 +6,65 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 17:16:40 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/08/27 17:46:25 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/08/27 21:06:05 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+static int	is_correct_vertical_wall(char *data)
+{
+	if (data[0] != '1')
+		return (FALSE);
+	if (data[ft_strlen(data) - 1] != '1')
+		return (FALSE);
+	return (TRUE);
+}
+
+static int	is_correct_horizontal_wall(char *data)
+{
+	while (data && *data)
+	{
+		if (*data != '1')
+			return (FALSE);
+		data++;
+	}
+	return (TRUE);
+}
+
+static int	has_correct_chars(char *data)
+{
+	while (data && *data)
+	{
+		if (*data < '0')
+			return (FALSE);
+		if (*data > '1' && *data < 'C')
+			return (FALSE);
+		if (*data > 'C' && *data < 'E')
+			return (FALSE);
+		if (*data > 'E' && *data < 'P')
+			return (FALSE);
+		if (*data > 'P')
+			return (FALSE);
+		data++;
+	}
+	return (TRUE);
+}
+
 static int	is_valid(char **map_data, int count)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (map_data[i])
 	{
-		j = 0;
-		if (!ft_strhas(map_data[i], "01CEP"))
+		if (i == 0 || i == count)
+			if (!is_correct_horizontal_wall(map_data[i]))
+				return (FALSE);
+		if (!is_correct_vertical_wall(map_data[i]))
 			return (FALSE);
-		if (map_data[i][0] != '1'
-			|| map_data[i][ft_strlen(map_data[i]) - 1] != '1')
+		if (!has_correct_chars(map_data[i]))
 			return (FALSE);
-		while (map_data[i][j])
-		{
-			if (i == 0 || i == count - 1)
-				if (map_data[i][j] != '1')
-					return (FALSE);
-			j++;
-		}
 		i++;
 	}
 	return (TRUE);

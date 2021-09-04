@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:21:00 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/04 17:26:09 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/04 18:33:06 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ enum
 {
 	player = 0,
 	map_exit = 1,
+	collectible = 2,
+	wall = 3,
 };
 
 typedef struct s_vector
@@ -45,8 +47,9 @@ typedef struct s_map
 {
 	char		*path;
 	char		**data;
-	t_vector	pos[2];
-	t_vector	*pos_collectibles;
+	int			line_count;
+	t_vector	*positions[4];
+	int			pos_count[4];
 }	t_map;
 
 typedef struct s_mlx
@@ -107,5 +110,6 @@ int		close_window(t_data *data);
 void	new_sprite(void *mlx, t_image *image);
 void	put_image(t_data *data, int image, unsigned int x, unsigned int y);
 void	init_texture_paths(t_data *data);
+void	init_positions(t_map *map);
 
 #endif

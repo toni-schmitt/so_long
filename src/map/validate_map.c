@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 15:11:56 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/04 15:29:51 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/04 19:06:12 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,16 @@ static int	is_correct_horizontal_wall(char *data)
 	return (TRUE);
 }
 
-static int	has_correct_chars(char *data)
+static int	has_correct_chars(char *data, int *count)
 {
 	while (data && *data)
 	{
+		if (*data == 'P')
+			count[0]++;
+		if (*data == 'E')
+			count[1]++;
+		if (*data == 'C')
+			count[2]++;
 		if (*data < '0')
 			return (FALSE);
 		if (*data > '1' && *data < 'C')
@@ -51,22 +57,28 @@ static int	has_correct_chars(char *data)
 	return (TRUE);
 }
 
-static int	is_valid(char **map_data, int count)
+static int	is_valid(char **map_data, int line_count)
 {
+	int	count[3];
 	int	i;
 
 	i = 0;
+	count[0] = 0;
+	count[1] = 0;
+	count[2] = 0;
 	while (map_data[i])
 	{
-		if (i == 0 || i == count - 1)
+		if (i == 0 || i == line_count - 1)
 			if (!is_correct_horizontal_wall(map_data[i]))
 				return (FALSE);
 		if (!is_correct_vertical_wall(map_data[i]))
 			return (ft_puterror("Map has no valid walls"));
-		if (!has_correct_chars(map_data[i]))
+		if (!has_correct_chars(map_data[i], count))
 			return (ft_puterror("Map has not supported chars"));
 		i++;
 	}
+	if (count[0] < 1 || count[1] < 1 || count[2] < 1)
+		return (FALSE);
 	return (TRUE);
 }
 

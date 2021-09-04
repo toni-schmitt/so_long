@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:21:00 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/04 17:13:54 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/04 17:26:09 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # endif
 
 # define NO_OF_TEXTURES 6
-# define TEXTURE_WIDTH 16
-# define TEXTURE_HEIGHT 16
+# define TEXTURE_WIDTH 32
+# define TEXTURE_HEIGHT 32
 
 enum
 {

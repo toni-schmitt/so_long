@@ -6,20 +6,22 @@
 #    By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 21:06:07 by tschmitt          #+#    #+#              #
-#    Updated: 2021/08/28 16:41:18 by tschmitt         ###   ########.fr        #
+#    Updated: 2021/09/04 17:11:47 by tschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
 CC = clang
-CCFLAGS = -Wall -Werror -Wextra
+CCFLAGS = 
 
 LIBFT_PATH = ./libs/libft/
 MLX_PATH = ./libs/mlx/
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
+SRC_UTILS_PATH = $(SRC_PATH)utils/
+OBJ_UTILS_PATH = $(OBJ_PATH)utils/
 
 INCLUDE = ./include/ 
 LIBFT_INCLUDE = $(LIBFT_PATH)include/
@@ -28,8 +30,11 @@ MLX_INCLUDE = $(MLX_PATH)
 LIBFT_NAME = $(LIBFT_PATH)lib/libft.a
 MLX_NAME = $(MLX_PATH)libmlx.a
 
-SRC = $(SRC_PATH)draw_map.c $(SRC_PATH)parse_map.c $(SRC_PATH)init.c
+SRC = $(SRC_PATH)main.c $(SRC_PATH)parse_map.c $(SRC_PATH)validate_map.c \
+		$(SRC_PATH)draw_map.c $(SRC_PATH)handle_input.c
 OBJ = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))
+SRC_UTILS = $(SRC_UTILS_PATH)utils.c $(SRC_UTILS_PATH)free_utils.c
+OBJ_UTILS = $(patsubst $(SRC_UTILS_PATH)%.c, $(OBJ_UTILS_PATH)%.o, $(SRC_UTILS))
 
 MLX_FLAGS = -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 
@@ -45,16 +50,37 @@ CUT = "\033[K"
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@make -C $(MLX_PATH)
+$(NAME): $(OBJ) $(OBJ_UTILS) $(LIBFT_NAME) $(MLX_NAME)
+	@echo $(Y)Compiling [$(NAME)]...$(X)
+	@$(CC) $(CCFLAGS) $(INCLUDE_FLAGS) $(MLX_FLAGS) $(OBJ) $(OBJ_UTILS) $(LIBFT_NAME) $(MLX_NAME) -o $(NAME)
+	@echo $(G)Finished [$(NAME)]$(X)
+
+
+$(LIBFT_NAME):
+	@echo $(Y)Compiling [$(LIBFT_NAME)]...$(X)
 	@make -C $(LIBFT_PATH)
-	@$(CC) $(CCFLAGS) $(INCLUDE_FLAGS) $(MLX_FLAGS) $(SRC_PATH)main.c $(OBJ_PATH)*.o $(MLX_NAME) $(LIBFT_NAME) -o $(NAME)
-	@echo $(C)Compiling [$(NAME)]...$(X)
+	@printf $(UP)$(CUT)
+	@echo $(G)Finished [$(LIBFT_NAME)]$(X)
+
+$(MLX_NAME):
+	@echo $(Y)Compiling [$(MLX_NAME)]...$(X)
+	@make -C $(MLX_PATH)
+	@printf $(UP)$(CUT)
+	@echo $(G)Finished [$(MLX_NAME)]$(X)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@echo $(Y)Compiling [$@]...$(X)
-	@mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_UTILS_PATH)
 	@$(CC) $(CCFLAGS) $(INCLUDE_FLAGS) -Imlx -c $< -o $@
+	@printf $(UP)$(CUT)
+	@echo $(G)Finished [$@]$(X)
+	@printf $(UP)$(CUT)
+
+$(OBJ_UTILS_PATH)%.o: $(SRC_UTILS_PATH)%.C
+	@echo $(Y)Compiling [$@]...$(X)
+	@$(CC) $(CCFLAGS) $(INCLUDE_FLAGS) -Imlx -c $< -o $@
+	@printf $(UP)$(CUT)
+	@echo $(G)Finished [$@]$(X)
 	@printf $(UP)$(CUT)
 
 clean:

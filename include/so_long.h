@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:21:00 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/08/28 16:43:43 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/04 17:13:54 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 
 # include "libft.h"
+# include "keys.h"
 # include <mlx.h>
 # include <fcntl.h>
 
@@ -24,14 +25,28 @@
 #  define WIN_HEIGHT 1000
 # endif
 
-# define NO_OF_TEXTURES 42
+# define NO_OF_TEXTURES 6
 # define TEXTURE_WIDTH 16
 # define TEXTURE_HEIGHT 16
 
+enum
+{
+	player = 0,
+	map_exit = 1,
+};
+
+typedef struct s_vector
+{
+	int	x;
+	int	y;
+}	t_vector;
+
 typedef struct s_map
 {
-	char	*path;
-	char	**data;
+	char		*path;
+	char		**data;
+	t_vector	pos[2];
+	t_vector	*pos_collectibles;
 }	t_map;
 
 typedef struct s_mlx
@@ -40,65 +55,14 @@ typedef struct s_mlx
 	void	*win;
 }	t_mlx;
 
-enum e_corners {
-	bottom_left = 0,
-	bottom_right = 1,
-	bottom = 2,
-	left = 3,
-	right = 4,
-	top_left = 5,
-	top_right = 6,
-	top = 7,
+enum e_textures {
+	grass_flower = 0,
+	stone_down = 1,
+	stone_up = 2,
+	chest = 3,
+	statue = 4,
+	stairs_down = 5
 };
-
-enum e_floor {
-	brick_mid = 8,
-	brick_straight = 9,
-	grass_empty = 10,
-	grass_flower = 11,
-	grass_half = 12,
-	grass_quater = 13,
-	stone_mid = 14,
-	stone_straight = 15,
-};
-
-enum e_sprites {
-	castle = 16,
-	chest = 17,
-	door_iron = 18,
-	door_passage = 19,
-	door_wood = 20,
-	fire_0 = 21,
-	fire_1 = 22,
-	grass = 23,
-	map = 24,
-	pot = 25,
-	rocks = 26,
-	stairs_down = 27,
-	stairs_up = 28,
-	statue = 29,
-	throne = 30,
-	tree_0 = 31,
-	tree_1 = 32,
-	tree_2 = 33,
-	trees_0 = 34,
-	village = 35,
-	well = 36,
-};
-
-enum e_wall {
-	brick_down = 37,
-	brick_up = 38,
-	mossy_stone_wall = 39,
-	stone_down = 40,
-	stone_up = 41,
-};
-
-typedef struct s_vector
-{
-	int	x;
-	int	y;
-}	t_vector;
 
 typedef struct s_image
 {
@@ -121,8 +85,27 @@ typedef struct s_data
 	int		win_height;
 }	t_data;
 
+/* PARSE_MAP */
 void	parse_map(t_map *map);
-void	init_texture_paths(t_data *data);
+
+/* VALIDATE_MAP */
+void	validate_map(char **map_data, int line_count);
+
+/* DRAW_MAP */
 void	draw_map(t_data *data);
+
+/* HANDLE_KEYS */
+int		handle_keys(int key, t_data *data);
+
+/* FREE_UTILS */
+int		free_images(t_data *data, int exit_status);
+int		free_map_data(char **data, int exit_status);
+int		free_data(t_data *data, int exit_status);
+
+/* UTILS */
+int		close_window(t_data *data);
+void	new_sprite(void *mlx, t_image *image);
+void	put_image(t_data *data, int image, unsigned int x, unsigned int y);
+void	init_texture_paths(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:21:00 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/04 18:33:06 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/05 16:52:51 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_map
 	int			line_count;
 	t_vector	*positions[4];
 	int			pos_count[4];
+	int			movement_counter;
+	int			collected;
 }	t_map;
 
 typedef struct s_mlx
@@ -111,5 +113,6 @@ void	new_sprite(void *mlx, t_image *image);
 void	put_image(t_data *data, int image, unsigned int x, unsigned int y);
 void	init_texture_paths(t_data *data);
 void	init_positions(t_map *map);
+int		win_game(t_data *data);
 
 #endif

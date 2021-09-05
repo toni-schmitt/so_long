@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:21:00 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/05 16:52:51 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/05 17:08:40 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,10 @@ void	validate_map(char **map_data, int line_count);
 void	draw_map(t_data *data);
 
 /* HANDLE_KEYS */
-int		handle_keys(int key, t_data *data);
+int		hanle_input(int key, t_data *data);
+
+/* MOVE_PLAYER */
+int	move_player(t_data *data, int x_plus, int y_plus)
 
 /* FREE_UTILS */
 int		free_images(t_data *data, int exit_status);

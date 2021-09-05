@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:20:32 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/04 16:54:25 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/05 17:07:46 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int argc, char *argv[])
 		return (ft_puterror("Error creating window"));
 	draw_map(data);
 	mlx_hook(data->mlx.win, 17, 1L << 17, close_window, data);
-	mlx_key_hook(data->mlx.win, handle_keys, data);
+	mlx_key_hook(data->mlx.win, hanle_input, data);
 	mlx_loop(data->mlx.init);
 	close_window(data);
 	return (EXIT_SUCCESS);

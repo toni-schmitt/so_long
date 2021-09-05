@@ -6,11 +6,24 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 17:16:40 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/04 19:10:26 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/04 19:19:57 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static int	get_pos_index(char c)
+{
+	if (c == 'P')
+		return (player);
+	if (c == 'E')
+		return (map_exit);
+	if (c == 'C')
+		return (collectible);
+	if (c == '1')
+		return (wall);
+	return (-1);
+}
 
 static void	save_positions(t_map *map)
 {
@@ -24,23 +37,18 @@ static void	save_positions(t_map *map)
 		j = 0;
 		while (map->data[i][j])
 		{
-			if (map->data[i][j] == 'P')
-				pos_index = player;
-			else if (map->data[i][j] == 'E')
-				pos_index = map_exit;
-			else if (map->data[i][j] == 'C')
-				pos_index = collectible;
-			else if (map->data[i][j] == '1')
-				pos_index = wall;
-			else
+			pos_index = get_pos_index(map->data[i][j]);
+			if (pos_index == -1)
 			{
 				j++;
 				continue ;
 			}
 			map->positions[pos_index][map->pos_count[pos_index]].x \
-			= TEXTURE_WIDTH * j++;
-			map->positions[pos_index][map->pos_count[pos_index]++].y \
+			= TEXTURE_WIDTH * j;
+			map->positions[pos_index][map->pos_count[pos_index]].y \
 			= i * TEXTURE_HEIGHT;
+			map->pos_count[pos_index]++;
+			j++;
 		}
 		i++;
 	}

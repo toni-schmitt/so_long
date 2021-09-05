@@ -6,7 +6,7 @@
 #    By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 21:06:07 by tschmitt          #+#    #+#              #
-#    Updated: 2021/09/04 19:16:55 by tschmitt         ###   ########.fr        #
+#    Updated: 2021/09/04 19:21:40 by tschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,26 +74,12 @@ $(MLX_NAME):
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@echo $(Y)Compiling [$@]...$(X)
 	@mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_MAP_PATH)
+	@mkdir -p $(OBJ_UTILS_PATH)
 	@$(CC) $(CCFLAGS) $(INCLUDE_FLAGS) -Imlx -c $< -o $@
 	@printf $(UP)$(CUT)
 	@echo $(G)Finished [$@]$(X)
 	@printf $(UP)$(CUT)
-
-# $(OBJ_UTILS_PATH)%.o: $(SRC_UTILS_PATH)%.c
-# 	@echo $(Y)Compiling [$@]...$(X)
-# 	@mkdir -p $(OBJ_UTILS_PATH)
-# 	@$(CC) $(CCFLAGS) $(INCLUDE_FLAGS) -Imlx -c $< -o $@
-# 	@printf $(UP)$(CUT)
-# 	@echo $(G)Finished [$@]$(X)
-# 	@printf $(UP)$(CUT)
-
-# $(OBJ_MAP_PATH)%.o: $(SRC_MAP_PATH)%.c
-# 	@echo $(Y)Compiling [$@]...$(X)
-# 	@mkdir -p $(OBJ_MAP_PATH)
-# 	@$(CC) $(CCFLAGS) $(INCLUDE_FLAGS) -Imlx -c $< -o $@
-# 	@printf $(UP)$(CUT)
-# 	@echo $(G)Finished [$@]$(X)
-# 	@printf $(UP)$(CUT)
 
 clean:
 	@echo $(R)Cleaning"  "[$(OBJ_PATH)]...$(X)

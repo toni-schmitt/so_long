@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 17:06:35 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/05 17:08:28 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/05 19:01:00 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,35 @@ static int	is_movable_space(t_data *data, int x_plus, int y_plus)
 
 static int	is_moving_to_exit(t_data *data, int x_plus, int y_plus)
 {
-	if (data->map.positions[player]->x + x_plus == \
-		data->map.positions[map_exit]->x && \
-		data->map.positions[player]->y + y_plus == \
-		data->map.positions[map_exit]->y)
-		return (TRUE);
+	int	i;
+
+	i = 0;
+	while (i < data->map.pos_count[map_exit])
+	{
+		if (data->map.positions[player]->x + x_plus == \
+			data->map.positions[map_exit][i].x && \
+			data->map.positions[player]->y + y_plus == \
+			data->map.positions[map_exit][i].y)
+			return (TRUE);
+		i++;
+	}
 	return (FALSE);
 }
 
 static int	was_on_exit(t_data *data)
 {
-	if (data->map.positions[player]->x == \
-		data->map.positions[map_exit]->x && \
-		data->map.positions[player]->y == \
-		data->map.positions[map_exit]->y)
-		return (TRUE);
+	int	i;
+
+	i = 0;
+	while (i < data->map.pos_count[map_exit])
+	{
+		if (data->map.positions[player]->x == \
+			data->map.positions[map_exit][i].x && \
+			data->map.positions[player]->y == \
+			data->map.positions[map_exit][i].y)
+			return (TRUE);
+		i++;
+	}
 	return (FALSE);
 }
 

@@ -6,13 +6,13 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 14:56:42 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/05 17:08:20 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/05 17:10:59 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	hanle_input(int key, t_data *data)
+int	handle_input(int key, t_data *data)
 {
 	if (key == KEY_ESCAPE)
 		return (close_window(data));

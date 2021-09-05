@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 15:11:56 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/04 19:06:12 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/05 19:16:21 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ static int	is_valid(char **map_data, int line_count)
 	count[2] = 0;
 	while (map_data[i])
 	{
+		if (i != line_count - 1)
+			if (ft_strlen(map_data[i]) != ft_strlen(map_data[i + 1]))
+				return (FALSE);
 		if (i == 0 || i == line_count - 1)
 			if (!is_correct_horizontal_wall(map_data[i]))
 				return (FALSE);

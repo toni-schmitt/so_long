@@ -6,7 +6,7 @@
 #    By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 21:06:07 by tschmitt          #+#    #+#              #
-#    Updated: 2021/09/05 17:36:56 by tschmitt         ###   ########.fr        #
+#    Updated: 2021/09/05 20:02:30 by tschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,11 +93,5 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
-
-norm:
-	@echo $(R)Checking Norm...$(X)
-	norminette ./src/
-	norminette ./libs/libft/
-	@echo $(G)Done$(X)
 
 .PHONY: all clean fclean re

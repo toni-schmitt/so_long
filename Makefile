@@ -6,7 +6,7 @@
 #    By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 21:06:07 by tschmitt          #+#    #+#              #
-#    Updated: 2021/09/04 19:21:40 by tschmitt         ###   ########.fr        #
+#    Updated: 2021/09/05 17:09:50 by tschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ MLX_INCLUDE = $(MLX_PATH)
 LIBFT_NAME = $(LIBFT_PATH)lib/libft.a
 MLX_NAME = $(MLX_PATH)libmlx.a
 
-SRC = $(SRC_PATH)main.c $(SRC_PATH)handle_input.c
+SRC = $(SRC_PATH)main.c $(SRC_PATH)handle_input.c $(SRC_PATH)move_player.c
 OBJ = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))
 SRC_UTILS = $(SRC_UTILS_PATH)utils.c $(SRC_UTILS_PATH)free_utils.c
 OBJ_UTILS = $(patsubst $(SRC_UTILS_PATH)%.c, $(OBJ_UTILS_PATH)%.o, $(SRC_UTILS))

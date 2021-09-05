@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 19:11:41 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/05 19:01:30 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/05 19:10:33 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int	count_chars(char **data, char ch)
 	while (data[i])
 	{
 		count += ft_chrcount(data[i], ch);
+		i++;
 	}
 	return (count);
 }

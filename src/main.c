@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:20:32 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/05 17:10:36 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/07 16:09:10 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		return (ft_puterror("Usage: ./so_long [map_path]"));
+	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
+		return (ft_puterror("Not a valid .ber-map"));
 	data = malloc(sizeof(*data));
 	if (data == NULL)
 		return (ft_puterror("Error allocating data struct"));

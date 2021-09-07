@@ -6,14 +6,14 @@
 #    By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 21:06:07 by tschmitt          #+#    #+#              #
-#    Updated: 2021/09/05 20:02:30 by tschmitt         ###   ########.fr        #
+#    Updated: 2021/09/07 16:26:09 by tschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
 CC = clang
-CCFLAGS = 
+CCFLAGS = -Wall -Werror -Wextra
 
 LIBFT_PATH = ./libs/libft/
 MLX_PATH = ./libs/mlx/

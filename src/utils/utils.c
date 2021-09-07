@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 16:39:21 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/05 16:54:01 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/07 16:34:46 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	put_image(t_data *data, int image, unsigned int x, unsigned int y)
 {
 	if (image >= NO_OF_TEXTURES || !data->images[image].is_valid)
 		return ;
-	if (x > data->win_width - TEXTURE_WIDTH \
-	|| y > data->win_height - TEXTURE_HEIGHT)
+	if (x > (unsigned int)data->win_width - TEXTURE_WIDTH \
+	|| y > (unsigned int)data->win_height - TEXTURE_HEIGHT)
 		return ;
 	mlx_put_image_to_window(data->mlx.init, data->mlx.win, \
 		data->images[image].image, x, y);

@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:20:32 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/07 16:09:10 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/07 16:25:43 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,25 @@ static void	get_win_propertys(t_map *map, int *width, int *height)
 	*height = ft_get_line_count(map->path) * TEXTURE_HEIGHT;
 }
 
+static int	check_map_path(int argc, char *argv[])
+{
+	int	fd;
+
+	if (argc != 2)
+		return (ft_puterror("Usage: ./so_long [map_path]"));
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		return (ft_puterror("Not a valid map-path"));
+	if (!ft_strstr(argv[1], ".ber"))
+		return (ft_puterror("Not a valid .ber-map"));
+	return (0);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_data	*data;
 
-	if (argc != 2)
-		return (ft_puterror("Usage: ./so_long [map_path]"));
-	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
-		return (ft_puterror("Not a valid .ber-map"));
+	check_map_path(argc, argv);
 	data = malloc(sizeof(*data));
 	if (data == NULL)
 		return (ft_puterror("Error allocating data struct"));

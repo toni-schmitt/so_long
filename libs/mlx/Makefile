@@ -17,6 +17,11 @@ $(NOM):	$(OBJ)
 	ar -r $(NOM) $(OBJ)
 	ranlib $(NOM)
 
+%.o : %.c 
+	@cc -O2 -w -DSTRINGPUTX11   -c -o $@ $<
+%.o : %.m
+	@cc -O2 -w -DSTRINGPUTX11   -c -o $@ $<
+
 clean:
 	rm -f $(NOM) $(OBJ) *~
 	rm -f mlx_app

@@ -2,7 +2,7 @@
 
 # Usage:
 1. Clone it like this:<br>
-`git clone --recurse-submodules https://github.com/toni-schmitt/push_swap.git`<br>
+`git clone --recurse-submodules https://github.com/toni-schmitt/so_long.git`<br>
 This way the libft submodule automatically will get cloned!
 2. Compile the program:<br>
 `make all`
